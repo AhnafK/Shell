@@ -19,7 +19,6 @@ char *** parse_multiple(char* line){
 	        ans[i]=parse_arg(s);
 		/*printf("%d : %s", i, ans[i]);*/
 		s = strsep(&line, ";");
-		
 		i++;
 	}
 	return ans;
