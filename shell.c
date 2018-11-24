@@ -36,20 +36,20 @@ char ** parse_quote(char* line) {
 	}
 	return ans;
 }
-
+int lenarray(char*** arr){
+	int i=0;
+	while(arr[i]){
+		i++;
+	}
+	return i;
+}
 int main(int argc, char *argv[]){
-  
   int* status=malloc(sizeof(int));
-
     while(WEXITSTATUS(*status)!=5){
-      char str1[100];
-      printf("shell$ ");
-      fgets(str1,100,stdin);
-      str1[strlen(str1)-1]='\0';
+      char * str1=readline("shell$ ");
       char *** args=parse_multiple(str1);
-      for(int i=0;i<sizeof(args)/sizeof(char**);i++){
+      for(int i=0;i<lenarray(args);i++){
 			if(!fork()){
-				printf("\n");
 				execvp(args[i][0],args[i]);
 				exit(1);
 		}
@@ -58,8 +58,9 @@ int main(int argc, char *argv[]){
 			}
 		}
 		if(!strcmp(args[0][0],"exit")){
-			exit(5);
 			free(status);
+			free(str1);
+			exit(5);
 		}
 		if(!strcmp(args[0][0],"cd")){
 			chdir(args[0][1]);

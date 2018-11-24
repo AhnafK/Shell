@@ -15,3 +15,4 @@
 
 char ** parse_arg(char* line);
 char *** parse_multiple(char* line);
+int lenarray(char*** arr);

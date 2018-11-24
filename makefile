@@ -1,5 +1,5 @@
 all: shell.o
-	gcc -o shell shell.c
+	gcc -o shell shell.c -lreadline
 shell.o: shell.c
 	gcc -c shell.c
 run:
