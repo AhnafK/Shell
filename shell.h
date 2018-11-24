@@ -9,5 +9,9 @@
 #include <errno.h>
 #include <signal.h>
 #include <sys/wait.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+
 
 char ** parse_arg(char* line);
+char *** parse_multiple(char* line);

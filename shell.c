@@ -1,12 +1,12 @@
 #include "shell.h"
 char ** parse_arg(char* line) {
 	char ** ans = calloc(8, sizeof(char*));
-	char *s = strsep(&line, " ");
+	char *s = strtok(line, " ");
 	int i = 0;
 	while (s) {
 		ans[i] = s;	
 		/*printf("%d : %s", i, ans[i]);*/
-		s = strsep(&line, " ");
+		s = strtok(NULL, " ");
 		i++;
 	}
 	return ans;
@@ -47,30 +47,25 @@ int main(int argc, char *argv[]){
       fgets(str1,100,stdin);
       str1[strlen(str1)-1]='\0';
       char *** args=parse_multiple(str1);
-      for(int i=0;i<2;i++){//sizeof(args)/sizeof(char**);i++){
+      for(int i=0;i<sizeof(args)/sizeof(char**);i++){
+			if(!fork()){
+				printf("\n");
+				execvp(args[i][0],args[i]);
+				exit(1);
+		}
+			else{
+				wait(status);
+			}
+		}
+		if(!strcmp(args[0][0],"exit")){
+			exit(5);
+			free(status);
+		}
+		if(!strcmp(args[0][0],"cd")){
+			chdir(args[0][1]);
+		}
+	} 
 	
-	if(!fork()){
-	  printf("\n");
-	  
-	  execvp(args[i][0],args[i]);
-	  
-	  exit(1);
-	}
-	else{
-	  wait(status);
-	}
-      }
-      if(!strcmp(args[0][0],"exit")){
-	exit(5);
-      }
-      if(!strcmp(args[0][0],"cd")){
-	chdir(args[0][1]);
-      }
-      
-    } 
-  
     wait(status);
-    free(args);
-    free(status);
-  return 0;
+  	return 0;
 }
