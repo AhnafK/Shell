@@ -1,0 +1,4 @@
+ls -l
+echo hello; ls
+pwd
+exit
