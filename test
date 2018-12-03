@@ -1,6 +1,14 @@
-total 40
-drwxrwxrwx 1 zer0 zer0  4096 Dec  3 00:00 .
-drwxrwxrwx 1 zer0 zer0  4096 Dec  1 02:35 ..
+README.md
+a.out
+makefile
+shell
+shell.c
+shell.h
+shell.o
+test
+test.c
+wc
+ zer0  4096 Dec  1 02:35 ..
 drwxrwxrwx 1 zer0 zer0  4096 Dec  2 13:22 .git
 -rwxrwxrwx 1 zer0 zer0   430 Nov 19 10:58 .gitignore
 -rwxrwxrwx 1 zer0 zer0     7 Nov 19 10:58 README.md

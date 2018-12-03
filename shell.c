@@ -91,21 +91,22 @@ int main(int argc, char *argv[]){
 						for(int ind=0;ind<j;ind++){
 							outargs[ind]=args[i][ind];
 						}
-						char ** inargs=calloc(10,sizeof(char));
-						for(int ind=j;ind<lenarrayl(args[i]);ind++){
-							inargs[ind]=args[i][ind];
-						}
-						int wr=dup2(fd[1],STDOUT_FILENO);
-						int rd=dup2(fd[0],STDIN_FILENO);
+						int fd1=open(args[i][j+1],O_RDONLY|O_WRONLY|O_CREAT);
 						if(!fork()){
-							execvp(outargs[0],outargs);
-							dup2(backup_stdout,STDOUT_FILENO);
-							close(fd[1]);
+							int new=dup2(fd[1],STDOUT_FILENO);
+							args[i][j]=NULL;
 						}
 						else{
+							wait(status);
+							int rd=dup2(fd[0],STDIN_FILENO);
+							close(fd[1]);
+							char ** inargs=calloc(10,sizeof(char));
+							int loc=0;
+							for(int ind=j+1;ind<lenarrayl(args[i]);ind++){
+								inargs[loc]=args[i][ind];
+								loc++;
+							}
 							execvp(inargs[0],inargs);
-							dup2(backup_stdin,STDIN_FILENO);
-							close(fd[0]);
 						}
 					}
 				}
