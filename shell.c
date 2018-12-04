@@ -1,4 +1,12 @@
 #include "shell.h"
+
+
+/*parse_args()
+  input: char *line
+  output: array of strings where each string is a token
+
+  separates line into arguments
+ */
 char ** parse_arg(char* line) {
 	char ** ans = calloc(8, sizeof(char*));
 	char *s = strtok(line, " ");
@@ -11,6 +19,14 @@ char ** parse_arg(char* line) {
 	}
 	return ans;
 }
+
+/*parse_multiple()
+  input: char *line
+  output: array of array of tokens for each command
+
+  seperates line into multiple parts with respaect to the delimiter of ;.
+  facilitates multiple commands in a single line
+ */
 char *** parse_multiple(char* line){
 	char *** ans = calloc(8, sizeof(char**));
 	char *s = strsep(&line, ";");
@@ -24,7 +40,30 @@ char *** parse_multiple(char* line){
 	return ans;
 } 
 
+<<<<<<< HEAD
 int lenarray2(char*** arr){
+=======
+char ** parse_quote(char* line) {
+  char ** ans = calloc(8, sizeof(char*));
+  char *t = strsep(&line, "\"");
+  char *s = strsep(&t, " ");
+  int i = 0;
+  while(t){
+    while (s) {
+      ans[i] = s;	
+      /*printf("%d : %s", i, ans[i]);*/
+      s = strsep(&t, " ");
+      i++;
+    }
+    ans[i] = strsep(&line, "\"");
+    i++;
+    t = strsep(&line, "\"");
+  }
+  return ans;
+}
+
+int lenarray(char*** arr){
+>>>>>>> 44c3cd4ab3e55b0ac77150ef43a08cc0523b2f18
 	int i=0;
 	while(arr[i]){
 		i++;
