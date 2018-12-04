@@ -2,17 +2,17 @@
 by Mohamed Jamil and Ahnaf Kazi
 
 Features:
-	* Executes commands
-	* Parse multiple commands on one line
-	* Redirects with < and >
-	* Piping with |
+* Executes commands
+* Parse multiple commands on one line
+* Redirects with < and >
+* Piping with |
 
 Attempted:
-	* keeping quotes as one token
+* keeping quotes as one token
 Bugs:
-	* Double Redirection does not function the first redirection of the two will be done
-	* When using a seperate tester file to pass commands the shell prints out the shell prompt "shell$ " multiple times before executing the command. Although it works fine when using the shell normally
-	* Multiple redirection and piping are not working
+* Double Redirection does not function the first redirection of the two will be done
+* When using a seperate tester file to pass commands the shell prints out the shell prompt "shell$ " multiple times before executing the command. Although it works fine when using the shell normally
+* Multiple redirection and piping are not working
 
 Files & Function Headers:
 
