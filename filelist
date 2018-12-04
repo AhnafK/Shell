@@ -1,0 +1,10 @@
+total 52
+-rwxrwxrwx 1 zer0 zer0     7 Nov 19 10:58 README.md
+-rwxrwxrwx 1 zer0 zer0 22872 Dec  3 23:32 a.out
+-rwxrwxrwx 1 zer0 zer0    78 Dec  4 04:04 filelist
+-rwxrwxrwx 1 zer0 zer0   103 Dec  4 03:59 makefile
+-rwxrwxrwx 1 zer0 zer0 13440 Dec  4 04:04 shell
+-rwxrwxrwx 1 zer0 zer0  2527 Dec  4 04:03 shell.c
+-rwxrwxrwx 1 zer0 zer0   364 Dec  4 04:00 shell.h
+-rwxrwxrwx 1 zer0 zer0  6040 Dec  4 04:04 shell.o
+-rwxrwxrwx 1 zer0 zer0   298 Dec  4 01:13 test_commands
