@@ -9,6 +9,8 @@ Features:
 
 Attempted:
 * keeping quotes as one token
+* double redirection
+
 Bugs:
 * Double Redirection does not function the first redirection of the two will be done
 * When using a seperate tester file to pass commands the shell prints out the shell prompt "shell$ " multiple times before executing the command. Although it works fine when using the shell normally
