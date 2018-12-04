@@ -19,30 +19,41 @@ Bugs:
 Files & Function Headers:
 
 /*======== char ** parse_args() ==========
+  
   input: char *line
+  
   output: array of strings where each string is a token
 
   separates line into arguments
+ 
  ==========*/
 
 /*======== char *** parse_multiple() ========
+  
   input: char *line
+  
   output: array of array of tokens for each command
 
   seperates line into multiple parts with respaect to the delimiter of ;.
+  
   facilitates multiple commands in a single line
  ========*/
  
  /*======= int lenarray1() =========
+   
    input: char ** array
+   
    output: length of array of strings
    
    helper function to find the size of an array of strings
  ========*/
  
   /*======= int lenarray1() =========
+ 
    input: char *** array
+   
    output: length of a 2d array of strings
    
    helper function to find the size of a 2d array of strings
+ 
  ========*/
