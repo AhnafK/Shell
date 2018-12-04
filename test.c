@@ -1,27 +1,26 @@
 #include "shell.h"
+
 char ** parse_quote(char* line) {
-    char ** ans = calloc(8, sizeof(char*));
-    char *s = strsep(&line, " ");
-    int i = 0;
+  char ** ans = calloc(8, sizeof(char*));
+  char *t = strsep(&line, "\"");
+  char *s = strsep(&t, " ");
+  int i = 0;
+  while(t){
     while (s) {
-      ans[i] = s;
-      //printf("%d : %s", i, ans[i]);
-      if(ans[i][0]=='\"'){
-        s = "\"";
-        strsep(&line, "\"");
-        strcat(s,strsep(&line, "\""));
-        strcat(s,"\"");
-        i++;
-      }
-      else{
-        s = strsep(&line, " ");
-        i++;
-      }
+      ans[i] = s;	
+      /*printf("%d : %s", i, ans[i]);*/
+      s = strsep(&t, " ");
+      i++;
     }
-    return ans;
+    ans[i] = strsep(&line, "\"");
+    i++;
+    t = strsep(&line, "\"");
   }
+  return ans;
+}
+
 int main() {
-  char * cmd="git commit -m\"adaadad\"";
+  char * cmd="git commit -m\"ada adad\"";
   char ** args=parse_quote(cmd);
   int i=0;
   while(args[i]){
