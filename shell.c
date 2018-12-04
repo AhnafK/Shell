@@ -61,18 +61,14 @@ int main(int argc, char *argv[]){
   int backup_stdout=dup(STDOUT_FILENO);
   int backup_stdin=dup(STDIN_FILENO);
   signal(SIGINT,sighandler);
-  while(WIFEXITED(*status)){
-      char * str1=calloc(1000,sizeof(char));
-	  while(!strcmp(str1,"")){
-		printf("shell$ ");
-		//printf("%c", getchar());  
-		fgets(str1,1000,stdin);
-	    str1[strlen(str1)-1]='\0';
-	  }
-      char *** args=parse_multiple(str1);
-      for(int i=0;i<lenarray(args);i++){
+  while(1){
+    char * str1=calloc(1000,sizeof(char));
+	printf("shell$ ");
+	fgets(str1,1000,stdin);
+	str1[strlen(str1)-1]='\0';
+    char *** args=parse_multiple(str1);
+    for(int i=0;i<lenarray(args);i++){
 			if(!fork()){
-				int executed=1;
 				for(int j=0;j<lenarrayl(args[i]);j++){
 					if(!strcmp(args[i][j],">")){
 						int fd=open(args[i][j+1],O_WRONLY|O_CREAT);
@@ -82,17 +78,13 @@ int main(int argc, char *argv[]){
 					else if(!strcmp(args[i][j],"<")){
 						int fd=open(args[i][j+1],O_RDONLY);
 						int new=dup2(fd,STDIN_FILENO);
-						execlp(args[i][j-1],args[i][j-1],NULL);
+						args[i][j]=NULL;
 					}
 					else if(!strcmp(args[i][j],"|")){
 						int fd[2];
                 		pipe(fd);
-						char ** outargs=calloc(10,sizeof(char));
-						for(int ind=0;ind<j;ind++){
-							outargs[ind]=args[i][ind];
-						}
-						int fd1=open(args[i][j+1],O_RDONLY|O_WRONLY|O_CREAT);
 						if(!fork()){
+							close(fd[0]);
 							int new=dup2(fd[1],STDOUT_FILENO);
 							args[i][j]=NULL;
 						}
@@ -107,12 +99,14 @@ int main(int argc, char *argv[]){
 								loc++;
 							}
 							execvp(inargs[0],inargs);
+							free(inargs);
 						}
 					}
 				}
 				execvp(args[i][0],args[i]);
 				dup2(backup_stdout,STDOUT_FILENO);
 				dup2(backup_stdin,STDIN_FILENO);
+				exit(1);
 			}
 			else{
 				wait(status);

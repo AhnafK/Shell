@@ -1,22 +1,20 @@
-README.md
-a.out
-makefile
-shell
-shell.c
-shell.h
-shell.o
-test
-test.c
-wc
- zer0  4096 Dec  1 02:35 ..
-drwxrwxrwx 1 zer0 zer0  4096 Dec  2 13:22 .git
--rwxrwxrwx 1 zer0 zer0   430 Nov 19 10:58 .gitignore
--rwxrwxrwx 1 zer0 zer0     7 Nov 19 10:58 README.md
--rwxrwxrwx 1 zer0 zer0  8464 Nov 29 11:02 a.out
--rwxrwxrwx 1 zer0 zer0   114 Nov 24 02:18 makefile
--rwxrwxrwx 1 zer0 zer0 13424 Dec  3 00:00 shell
--rwxrwxrwx 1 zer0 zer0  2281 Dec  3 00:00 shell.c
--rwxrwxrwx 1 zer0 zer0   398 Nov 30 10:59 shell.h
--rwxrwxrwx 1 zer0 zer0  5400 Dec  3 00:00 shell.o
--rwxrwxrwx 1 zer0 zer0   454 Dec  3 00:00 test
--rwxrwxrwx 1 zer0 zer0   668 Nov 29 11:02 test.c
+echo NORMAL TEST
+ls
+ls -a -l
+echo CD TEST
+cd ..
+pwd
+echo SEMICOLON TEST
+ps ; echo HELLO
+echo STDOUT REDIRECT TEST
+w > wholist
+cat wholist
+echo STDIN REDIRECT TEST
+tr a-z A-Z < wholist
+echo DOUBLE REDIRECT TEST
+tr a-z A-Z < wholist > foo
+cat foo
+echo PIPE TEST
+ls | wc
+rm wholist foo
+echo EXIT
